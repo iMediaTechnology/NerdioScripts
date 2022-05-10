@@ -6,10 +6,7 @@ Notes:
 This script adds the user assigned the personal desktop to the local admin group
 #>
 
-param(
-    [Parameter()]
-    [String]$clientName
-)
+$clientName = $ADUsername
 
 #Create Directory if it doesn't already exist
 #C:\LocalApps\iMT\
