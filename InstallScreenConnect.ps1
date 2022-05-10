@@ -1,4 +1,12 @@
-﻿param(
+#description: Installs the ScreenConnect/Connectwise Control client on the target system
+#execution mode: Unknown
+#tags: iMedia Technology
+<#
+Notes: 
+This script adds the user assigned the personal desktop to the local admin group
+#>
+
+param(
     [Parameter()]
     [String]$clientName
 )
@@ -17,4 +25,8 @@ if ($clientName -ne "")
     #Launch Installer Just Downloaded
     Write-Host "Installing SC Client for $clientName..."
     Start-Process "c:\LocalApps\iMT\ScreenConnectInstaller.exe"
+}
+else
+{
+    Write-Error -Message "Error: Please specify the client group as a parameter."
 }
