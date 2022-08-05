@@ -11,7 +11,7 @@ Site Token stored as variable through Nerdio, accessible as $SecureVars.Sentinel
 New-Item -Path "c:\" -Name "LocalApps" -ItemType "directory" -Verbose -ErrorAction SilentlyContinue
 New-Item -Path "c:\LocalApps" -Name "iMT" -ItemType "directory" -Verbose -ErrorAction SilentlyContinue
 
-if (Get-Variable -Name SecureVars.SentinelSiteToken -ErrorAction SilentlyContinue)
+if ($SecureVars.SentinelSiteToken)
 {
     #Download SentinelOne Installer
     Write-Host "Downloading SentinelOne Installer for $ADUsername..."
@@ -19,7 +19,7 @@ if (Get-Variable -Name SecureVars.SentinelSiteToken -ErrorAction SilentlyContinu
 
     #Launch Installer Just Downloaded
     Write-Host "Installing SentinelOne Agent for $ADUsername..."
-    Start-Process "c:\LocalApps\iMT\SentinelOneInstaller.exe --dont_fail_on_config_preserving_failures -t $SecureVars.SentinelSiteToken "
+    Start-Process "c:\LocalApps\iMT\SentinelOneInstaller.exe" -ArgumentList "--dont_fail_on_config_preserving_failures -t $SecureVars.SentinelSiteToken"
 }
 else
 {
