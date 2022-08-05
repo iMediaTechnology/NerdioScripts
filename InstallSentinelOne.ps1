@@ -18,8 +18,8 @@ if ($SecureVars.SentinelSiteToken)
     Invoke-WebRequest -Uri "https://github.com/iMediaTechnology/NerdioScripts/releases/download/DL/SentinelOneInstaller64.exe" -OutFile "c:\LocalApps\iMT\SentinelOneInstaller.exe"
 
     #Launch Installer Just Downloaded
-    Write-Host "Installing SentinelOne With Site Token $SecureVars.SentinelSiteToken ..."
-    Start-Process "c:\LocalApps\iMT\SentinelOneInstaller.exe" -ArgumentList "--dont_fail_on_config_preserving_failures -q -t $SecureVars.SentinelSiteToken"
+    Write-Host "Installing SentinelOne With Site Token $($SecureVars.SentinelSiteToken) ..."
+    Start-Process "c:\LocalApps\iMT\SentinelOneInstaller.exe" -ArgumentList "--dont_fail_on_config_preserving_failures -q -t $($SecureVars.SentinelSiteToken)"
 }
 else
 {
