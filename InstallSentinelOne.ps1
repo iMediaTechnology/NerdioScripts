@@ -14,12 +14,12 @@ New-Item -Path "c:\LocalApps" -Name "iMT" -ItemType "directory" -Verbose -ErrorA
 if ($SecureVars.SentinelSiteToken)
 {
     #Download SentinelOne Installer
-    Write-Host "Downloading SentinelOne Installer for $ADUsername..."
+    Write-Host "Downloading SentinelOne Installer for $ADUsername ..."
     Invoke-WebRequest -Uri "https://github.com/iMediaTechnology/NerdioScripts/releases/download/DL/SentinelOneInstaller64.exe" -OutFile "c:\LocalApps\iMT\SentinelOneInstaller.exe"
 
     #Launch Installer Just Downloaded
-    Write-Host "Installing SentinelOne Agent for $ADUsername..."
-    Start-Process "c:\LocalApps\iMT\SentinelOneInstaller.exe" -ArgumentList "--dont_fail_on_config_preserving_failures -t $SecureVars.SentinelSiteToken"
+    Write-Host "Installing SentinelOne With Site Token $SecureVars.SentinelSiteToken ..."
+    Start-Process "c:\LocalApps\iMT\SentinelOneInstaller.exe" -ArgumentList "--dont_fail_on_config_preserving_failures -q -t $SecureVars.SentinelSiteToken"
 }
 else
 {
