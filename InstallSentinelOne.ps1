@@ -3,7 +3,7 @@
 #tags: iMedia Technology
 <#
 Notes: 
-Does not automatically assign a site key, will need to be entered when running
+Site Token stored as variable through Nerdio, accessible as $SecureVars.SentinelSiteToken
 #>
 
 #Create Directory if it doesn't already exist
@@ -11,17 +11,17 @@ Does not automatically assign a site key, will need to be entered when running
 New-Item -Path "c:\" -Name "LocalApps" -ItemType "directory" -Verbose -ErrorAction SilentlyContinue
 New-Item -Path "c:\LocalApps" -Name "iMT" -ItemType "directory" -Verbose -ErrorAction SilentlyContinue
 
-if (Get-Variable -Name ADUsername -ErrorAction SilentlyContinue)
+if (Get-Variable -Name SecureVars.SentinelSiteToken -ErrorAction SilentlyContinue)
 {
     #Download SentinelOne Installer
     Write-Host "Downloading SentinelOne Installer for $ADUsername..."
-    Invoke-WebRequest -Uri "https://github.com/iMediaTechnology/NerdioScripts/releases/download/DL/SentinelOneInstaller.exe" -OutFile "c:\LocalApps\iMT\SentinelOneInstaller.exe"
+    Invoke-WebRequest -Uri "https://github.com/iMediaTechnology/NerdioScripts/releases/download/DL/SentinelOneInstaller64.exe" -OutFile "c:\LocalApps\iMT\SentinelOneInstaller.exe"
 
     #Launch Installer Just Downloaded
     Write-Host "Installing SentinelOne Agent for $ADUsername..."
-    Start-Process "c:\LocalApps\iMT\SentinelOneInstaller.exe /SILENT"
+    Start-Process "c:\LocalApps\iMT\SentinelOneInstaller.exe --dont_fail_on_config_preserving_failures -t $SecureVars.SentinelSiteToken "
 }
 else
 {
-    Write-Error -Message "Error: Variable ADUsername was not passed to the script for evaluation."
+    Write-Error -Message "Error: Variable for Sentinel One site token not specified in Nerdio settings."
 }
