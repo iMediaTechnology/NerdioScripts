@@ -10,6 +10,7 @@ $authHeader = "ApiToken " + $SecureVars.S1APIToken
 $headers = @{
     "Authorization" = $authHeader
 }
+Write-Output "Header Used: " + $authHeader
 $agentURL = "https://usea1-pax8-exsp.sentinelone.net/web/api/v2.1/agents?computerName__contains="
 $uninstallURL = "https://usea1-pax8-exsp.sentinelone.net/web/api/v2.1/agents/actions/uninstall"
 $combinedUri = $agentURL + $SecureVars.SessionHostPrefix
