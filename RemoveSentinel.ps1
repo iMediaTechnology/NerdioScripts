@@ -6,7 +6,8 @@
 Clear-Host
 
 #Set up endpoint data for requests and REST params
-$authHeader = "ApiToken " + $SecureVars.S1APIToken
+$tokenValue = $SecureVars.S1APIToken
+$authHeader = "ApiToken " + $tokenValue
 $headers = @{
     "Authorization" = $authHeader
 }
