@@ -15,7 +15,10 @@ if ($SecureVars.SentinelSiteToken)
 {
     #Download SentinelOne Installer
     Write-Host "Downloading SentinelOne Installer for $ADUsername ..."
-    Invoke-WebRequest -Uri "https://github.com/iMediaTechnology/NerdioScripts/releases/download/DL/SentinelOneInstaller64.exe" -OutFile "c:\LocalApps\iMT\SentinelOneInstaller.exe"
+    curl -H 'Authorization: token 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' \
+     -H 'Accept: application/vnd.github.v3.raw' \
+     -O \
+     -L "https://github.com/iMediaTechnology/NerdioScripts/releases/download/DL/SentinelOneInstaller64.exe" -OutFile "c:\LocalApps\iMT\SentinelOneInstaller.exe"
 
     #Launch Installer Just Downloaded
     Write-Host "Installing SentinelOne With Site Token $($SecureVars.SentinelSiteToken) ..."
